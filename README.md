@@ -1,12 +1,12 @@
 ParticleEffectForUGUI
 ===
 
-This plugin provide a component to render particle effect for uGUI in Unity 2018.2+.  
+This plugin provide a component to render particle effect for uGUI in Unity 2018.2 or later.  
 The particle rendering is maskable and sortable, without Camera, RenderTexture or Canvas.
 
 [![](https://img.shields.io/github/release/mob-sakai/ParticleEffectForUGUI.svg?label=latest%20version)](https://github.com/mob-sakai/ParticleEffectForUGUI/releases)
 [![](https://img.shields.io/github/release-date/mob-sakai/ParticleEffectForUGUI.svg)](https://github.com/mob-sakai/ParticleEffectForUGUI/releases)  
-![](https://img.shields.io/badge/requirement-Unity%202018.2%2B-green.svg)
+![](https://img.shields.io/badge/requirement-Unity%202018.2%20or%20later-green.svg)
 [![](https://img.shields.io/github/license/mob-sakai/ParticleEffectForUGUI.svg)](https://github.com/mob-sakai/ParticleEffectForUGUI/blob/upm/LICENSE.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-orange.svg)](http://makeapullrequest.com)
 [![](https://img.shields.io/twitter/follow/mob_sakai.svg?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=mob_sakai)
@@ -17,7 +17,8 @@ The particle rendering is maskable and sortable, without Camera, RenderTexture o
 
 ### What's new? Please see [See changelog ![](https://img.shields.io/github/release-date/mob-sakai/ParticleEffectForUGUI.svg?label=last%20updated)](https://github.com/mob-sakai/ParticleEffectForUGUI/blob/upm/CHANGELOG.md)
 ### Do you want to receive notifications for new releases? [Watch this repo ![](https://img.shields.io/github/watchers/mob-sakai/ParticleEffectForUGUI.svg?style=social&label=Watch)](https://github.com/mob-sakai/ParticleEffectForUGUI/subscription)
-### Support me on Patreon! [![become_a_patron](https://user-images.githubusercontent.com/12690315/50731629-3b18b480-11ad-11e9-8fad-4b13f27969c1.png)](https://www.patreon.com/join/2343451?)
+### Support me on Patreon!  
+[![become_a_patron](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/join/2343451?)
 
 
 
@@ -34,7 +35,7 @@ Compares this "Baking mesh" approach with the conventional approach:
 
 |Approach|Good|Bad|Screenshot|
 |-|-|-|-|
-|Baking mesh<br>**\(UIParticle\)**|Rendered as is.<br>Maskable.<br>Sortable.<br>Less objects.|**Requires Unity 2018.2+.**<br>Requires UI shaders to use Mask.|<img src="https://user-images.githubusercontent.com/12690315/41765089-0302b9a2-763e-11e8-88b3-b6ffa306bbb0.gif" width="500px">|
+|Baking mesh<br>**\(UIParticle\)**|Rendered as is.<br>Maskable.<br>Sortable.<br>Less objects.|**Requires Unity 2018.2 or later.**<br>Requires UI shaders to use Mask.|<img src="https://user-images.githubusercontent.com/12690315/41765089-0302b9a2-763e-11e8-88b3-b6ffa306bbb0.gif" width="500px">|
 |Do nothing|Rendered as is.|**Looks like a glitch.**<br>Not maskable.<br>Not sortable.|<img src="https://user-images.githubusercontent.com/12690315/41765090-0329828a-763e-11e8-8d8a-f1d269ea3bc7.gif" width="500px">|
 |Convert particle to UIVertex<br>[\(UIParticleSystem\)](https://forum.unity.com/threads/free-script-particle-systems-in-ui-screen-space-overlay.406862/)|Maskable.<br>Sortable.<br>Less objects.|**Adjustment is difficult.**<br>Requires UI shaders.<br>Difficult to adjust scale.<br>Force hierarchy scalling.<br>Simulation results are incorrect.<br>Trail, rotation of transform, time scaling are not supported.<br>Generate heavy GC every frame.|<img src="https://user-images.githubusercontent.com/12690315/41765088-02deb9c6-763e-11e8-98d0-9e0c1766ef39.gif" width="500px">|
 |Use Canvas to sort|Rendered as is.<br>Sortable.|**You must to manage sorting orders.**<br>Not maskable.<br>More batches.|<img src="https://user-images.githubusercontent.com/12690315/41765087-02b866ea-763e-11e8-8c33-081c9ad852f8.gif" width="500px">|
@@ -70,13 +71,13 @@ Compares this "Baking mesh" approach with the conventional approach:
 <br><br><br><br>
 ## Install
 
-#### Using UnityPackageManager (for Unity 2018.3+)
+#### Using UnityPackageManager (for Unity 2018.3 or later)
 
 Find the manifest.json file in the Packages folder of your project and edit it to look like this:
 ```js
 {
   "dependencies": {
-    "com.coffee.ui-particle": "https://github.com/mob-sakai/ParticleEffectForUGUI.git#2.2.1",
+    "com.coffee.ui-particle": "https://github.com/mob-sakai/ParticleEffectForUGUI.git#2.3.1",
     ...
   },
 }
@@ -84,11 +85,10 @@ Find the manifest.json file in the Packages folder of your project and edit it t
 To update the package, change `#{version}` to the target version.  
 Or, use [UpmGitExtension](https://github.com/mob-sakai/UpmGitExtension).
 
-#### Using .unitypackage file (for Unity 2018.2+)
+#### Using Packages directory (for Unity 2018.2)
 
-Download `*.unitypackage` from [Releases](https://github.com/mob-sakai/ParticleEffectForUGUI/releases) and import the package into your Unity project.  
-Select `Assets > Import Package > Custom Package` from the menu.  
-![](https://user-images.githubusercontent.com/12690315/46570979-edbb5a00-c9a7-11e8-845d-c5ee279effec.png)
+* Download [zip file](https://github.com/mob-sakai/ParticleEffectForUGUI/archive/upm.zip)
+* Unzip the file into `Packages` directory in your project
 
 
 
@@ -118,7 +118,7 @@ Select `Assets > Import Package > Custom Package` from the menu.
 
 ##### Requirement
 
-* Unity 2018.2+ (Tested in Unity 2018.2.0f2)
+* Unity 2018.2 or later (Tested in Unity 2018.2.0f2)
 * No other SDK are required
 
 
@@ -157,7 +157,7 @@ To prevent this, Use "Animatable Material Property".
 
 [mob-sakai](https://github.com/mob-sakai)
 [![](https://img.shields.io/twitter/follow/mob_sakai.svg?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=mob_sakai)  
-[![become_a_patron](https://user-images.githubusercontent.com/12690315/50731629-3b18b480-11ad-11e9-8fad-4b13f27969c1.png)](https://www.patreon.com/join/2343451?)
+[![become_a_patron](https://c5.patreon.com/external/logo/become_a_patron_button.png)](https://www.patreon.com/join/2343451?)
 
 
 
