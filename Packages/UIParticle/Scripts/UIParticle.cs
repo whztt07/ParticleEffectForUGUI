@@ -19,6 +19,7 @@ namespace Coffee.UIExtensions
         //################################
         static readonly int s_IdMainTex = Shader.PropertyToID("_MainTex");
         static readonly List<Vector3> s_Vertices = new List<Vector3>();
+        static readonly List<Color32> s_Colors = new List<Color32>();
         static readonly List<UIParticle> s_TempRelatables = new List<UIParticle>();
         static readonly List<UIParticle> s_ActiveParticles = new List<UIParticle>();
 
@@ -468,6 +469,18 @@ namespace Coffee.UIExtensions
 
                         // Apply matrix.
                         Profiler.BeginSample("Apply matrix to position");
+
+                        if (QualitySettings.activeColorSpace == ColorSpace.Linear)
+                        {
+                            _mesh.GetColors(s_Colors);
+                            var count_c = s_Colors.Count;
+                            for (int i = 0; i < count_c; i++)
+                            {
+                                s_Colors[i] = ((Color)s_Colors[i]).gamma;
+                            }
+                            _mesh.SetColors(s_Colors);
+                        }
+
                         _mesh.GetVertices(s_Vertices);
                         var count = s_Vertices.Count;
                         for (int i = 0; i < count; i++)
@@ -477,6 +490,7 @@ namespace Coffee.UIExtensions
                         _mesh.SetVertices(s_Vertices);
                         _mesh.RecalculateBounds();
                         s_Vertices.Clear();
+                        s_Colors.Clear();
                         Profiler.EndSample();
                     }
 
