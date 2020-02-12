@@ -3,9 +3,7 @@ using UnityEditor.UI;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.IMGUI.Controls;
 using System;
-using System.Reflection;
 using ShaderPropertyType = Coffee.UIExtensions.UIParticle.AnimatableProperty.ShaderPropertyType;
 
 namespace Coffee.UIExtensions
