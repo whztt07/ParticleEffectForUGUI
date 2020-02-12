@@ -16,8 +16,8 @@
   "dependencies": {},
   "samples": [
     {
-      "displayName": "UI Particle Sample",
-      "description": "UI Particle Sample",
+      "displayName": "Demo",
+      "description": "UI Particle Demo",
       "path": "Samples~/Demo"
     }
   ]
