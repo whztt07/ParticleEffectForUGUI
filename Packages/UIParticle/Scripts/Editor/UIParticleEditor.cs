@@ -177,7 +177,7 @@ namespace Coffee.UIExtensions
 
                 if (!Application.isPlaying && pr.enabled)
                 {
-                    EditorGUILayout.HelpBox("ParticleSystemRenderer will be disable on playing.", MessageType.Info);
+                    EditorGUILayout.HelpBox("UIParticles disable the RendererModule in ParticleSystem at runtime to prevent double rendering.", MessageType.Warning);
                 }
             }
             EditorGUI.indentLevel--;
