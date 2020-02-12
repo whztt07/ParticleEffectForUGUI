@@ -379,6 +379,12 @@ namespace Coffee.UIExtensions
                     }
                     Profiler.EndSample();
 
+                    // Editor crashes when mesh is set to null when ParticleSystem.RenderMode=Mesh
+                    if (_renderer.renderMode == ParticleSystemRenderMode.Mesh && !_renderer.mesh)
+                    {
+                        return;
+                    }
+
                     Profiler.BeginSample("Make Matrix");
                     ParticleSystem.MainModule main = m_ParticleSystem.main;
                     scaleaMatrix = main.scalingMode == ParticleSystemScalingMode.Hierarchy
