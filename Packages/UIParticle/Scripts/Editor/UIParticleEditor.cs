@@ -122,11 +122,7 @@ namespace Coffee.UIExtensions
         static readonly GUIContent s_ContentParticleMaterial = new GUIContent("Particle Material", "The material for rendering particles");
         static readonly GUIContent s_ContentTrailMaterial = new GUIContent("Trail Material", "The material for rendering particle trails");
         static readonly List<ParticleSystem> s_ParticleSystems = new List<ParticleSystem>();
-        static readonly Matrix4x4 s_ArcHandleOffsetMatrix = Matrix4x4.TRS(Vector3.zero, Quaternion.AngleAxis(90f, Vector3.right) * Quaternion.AngleAxis(90f, Vector3.up), Vector3.one);
-        static readonly Dictionary<string, MethodInfo> s_InternalMethods = new Dictionary<string, MethodInfo>();
         static readonly Color s_GizmoColor = new Color(1f, 0.7f, 0.7f, 0.9f);
-        static readonly Color s_ShapeGizmoThicknessTint = new Color(0.7f, 0.7f, 0.7f, 1.0f);
-        static Material s_Material;
 
         static readonly List<string> s_MaskablePropertyNames = new List<string>()
         {
@@ -152,14 +148,7 @@ namespace Coffee.UIExtensions
             _spScale = serializedObject.FindProperty("m_Scale");
             _spIgnoreParent = serializedObject.FindProperty("m_IgnoreParent");
             _spAnimatableProperties = serializedObject.FindProperty("m_AnimatableProperties");
-
-            if (!s_Material)
-            {
-                s_Material = Call<Material>(typeof(Material), "GetDefaultMaterial");
-            }
-
             _particles = targets.Cast<UIParticle>().ToArray();
-
             _shapeModuleUIs = null;
 
             var targetsGos = targets.Cast<UIParticle>().Select(x => x.gameObject).ToArray();
@@ -244,10 +233,6 @@ namespace Coffee.UIExtensions
         }
 
 
-
-
-
-
         //################################
         // Private Members.
         //################################
@@ -257,23 +242,8 @@ namespace Coffee.UIExtensions
         SerializedProperty _spIgnoreParent;
         SerializedProperty _spAnimatableProperties;
         UIParticle[] _particles;
-        ArcHandle _arcHandle = new ArcHandle();
-        BoxBoundsHandle _boxBoundsHandle = new BoxBoundsHandle();
-        SphereBoundsHandle _sphereBoundsHandle = new SphereBoundsHandle();
-        Mesh _spriteMesh;
         ShapeModuleUI[] _shapeModuleUIs;
         ParticleSystemInspector _inspector;
-
-        static T Call<T>(Type type, string method, params object[] args)
-        {
-            MethodInfo mi;
-            if (!s_InternalMethods.TryGetValue(method, out mi))
-            {
-                mi = type.GetMethod(method, BindingFlags.Static | BindingFlags.NonPublic);
-                s_InternalMethods.Add(method, mi);
-            }
-            return (T)mi.Invoke(null, args);
-        }
 
         void OnSceneGUI()
         {
@@ -284,8 +254,8 @@ namespace Coffee.UIExtensions
             Action postAction = () => { };
             Color origin = ShapeModuleUI.s_GizmoColor.m_Color;
             Color originDark = ShapeModuleUI.s_GizmoColor.m_Color;
-            ShapeModuleUI.s_GizmoColor.m_Color = new Color(1f, 0.7f, 0.7f, 0.9f);
-            ShapeModuleUI.s_GizmoColor.m_OptionalDarkColor = new Color(1f, 0.7f, 0.7f, 0.9f);
+            ShapeModuleUI.s_GizmoColor.m_Color = s_GizmoColor;
+            ShapeModuleUI.s_GizmoColor.m_OptionalDarkColor = s_GizmoColor;
 
             _particles
                 .Select(x => new { canvas = x.canvas, ps = x.cachedParticleSystem, scale = x.scale })
