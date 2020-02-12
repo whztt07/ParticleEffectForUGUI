@@ -10,6 +10,7 @@ namespace Coffee.UIExtensions
     /// <summary>
     /// </summary>
     [ExecuteInEditMode]
+	[AddComponentMenu("")]
     public class UIParticleOverlayCamera : MonoBehaviour
     {
         //################################
