@@ -159,6 +159,14 @@ namespace Coffee.UIExtensions
 			}
 
 			_particles = targets.Cast<UIParticle> ().ToArray ();
+
+
+			// var psi = Resources.FindObjectsOfTypeAll<ParticleSystemInspector>()
+			// 	.FirstOrDefault(x  => x.targets.SequenceEqual(this.targets));
+
+			// // var a = psi.m_ParticleEffectUI?.m_Emitters;
+			// Debug.Log(psi);
+			
 		}
 
 		/// <summary>
