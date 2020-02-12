@@ -248,7 +248,7 @@ namespace Coffee.UIExtensions
         void OnSceneGUI()
         {
             _shapeModuleUIs ??= _inspector?.m_ParticleEffectUI?.m_Emitters?.SelectMany(x => x.m_Modules).OfType<ShapeModuleUI>()?.ToArray();
-            if (_shapeModuleUIs == null)
+            if (_shapeModuleUIs == null || _shapeModuleUIs.Length == 0 || _shapeModuleUIs[0].GetParticleSystem() != (target as UIParticle).cachedParticleSystem)
                 return;
 
             Action postAction = () => { };
@@ -258,7 +258,7 @@ namespace Coffee.UIExtensions
             ShapeModuleUI.s_GizmoColor.m_OptionalDarkColor = s_GizmoColor;
 
             _particles
-				.Distinct()
+                .Distinct()
                 .Select(x => new { canvas = x.canvas, ps = x.cachedParticleSystem, scale = x.scale })
                 .Where(x => x.ps && x.canvas)
                 .ToList()
@@ -267,7 +267,7 @@ namespace Coffee.UIExtensions
                     var trans = x.ps.transform;
                     var hasChanged = trans.hasChanged;
                     var localScale = trans.localScale;
-                    postAction = () => trans.localScale = localScale;
+                    postAction += () => trans.localScale = localScale;
                     trans.localScale = Vector3.Scale(localScale, x.canvas.rootCanvas.transform.localScale * x.scale);
                 });
 
