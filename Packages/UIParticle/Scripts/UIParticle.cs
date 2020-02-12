@@ -469,6 +469,7 @@ namespace Coffee.UIExtensions
 							s_Vertices [i] = matrix.MultiplyPoint3x4 (s_Vertices [i]);
 						}
 						_mesh.SetVertices (s_Vertices);
+						_mesh.RecalculateBounds();
 						s_Vertices.Clear ();
 						Profiler.EndSample ();
 					}
