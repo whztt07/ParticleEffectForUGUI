@@ -258,6 +258,7 @@ namespace Coffee.UIExtensions
             ShapeModuleUI.s_GizmoColor.m_OptionalDarkColor = s_GizmoColor;
 
             _particles
+				.Distinct()
                 .Select(x => new { canvas = x.canvas, ps = x.cachedParticleSystem, scale = x.scale })
                 .Where(x => x.ps && x.canvas)
                 .ToList()
@@ -267,7 +268,6 @@ namespace Coffee.UIExtensions
                     var hasChanged = trans.hasChanged;
                     var localScale = trans.localScale;
                     postAction = () => trans.localScale = localScale;
-                    postAction = () => trans.hasChanged = hasChanged;
                     trans.localScale = Vector3.Scale(localScale, x.canvas.rootCanvas.transform.localScale * x.scale);
                 });
 
