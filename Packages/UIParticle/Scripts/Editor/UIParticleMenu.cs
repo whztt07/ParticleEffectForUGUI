@@ -14,6 +14,11 @@ namespace Coffee.UIExtensions
         [MenuItem("Assets/Samples/Import UIParticle Sample")]
         static void ImportSample()
         {
+            // A different version of the sample is already imported at
+            //
+            // {PATH}
+            //
+            // It will be deleted when you update. Are you sure you want to continue?
             const string sampleGuid = "dc0fe9e7fe61947fab1522ab29e2fc88";
             const string jsonGuid = "823dc693d087a4b559c7e1547274cc7d";
             const string SAMPLE_NAME = "Demo";
